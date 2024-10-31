@@ -5,6 +5,7 @@
     ":semanticCommitsDisabled",
     "schedule:daily"
   ],
+  "automerge": true,
   "ignorePaths": [
     "src/main/resources/org/jenkinsci/test/acceptance/docker/fixtures/FtpdContainer/Dockerfile",
     "src/main/resources/org/jenkinsci/test/acceptance/docker/fixtures/JabberContainer/Dockerfile",
@@ -47,6 +48,12 @@
         "dependencies",
         "build-image"
       ]
+    },
+    {
+      "packagePatterns": ["org.jenkins-ci.main:jenkins-war"],
+      "allowedVersions": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/",
+      "matchCurrentVersion": "/^[0-9]+\\.[0-9]+\\.[0-9]+$/",
+      "registryUrls": ["https://repo.jenkins-ci.org/public/"]
     }
   ],
   "labels": [
@@ -130,7 +137,19 @@
       ],
       "depNameTemplate": "{{{repo}}}",
       "datasourceTemplate": "docker"
+    },
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "pom.xml"
+      ],
+      "matchStrings": [
+        "<jenkins.version>(?<currentValue>.*?)</jenkins.version>"
+      ],
+      "depNameTemplate": "org.jenkins-ci.main:jenkins-war",
+      "datasourceTemplate": "maven"
     }
+
   ],
   "customDatasources": {
     "firefox": {
