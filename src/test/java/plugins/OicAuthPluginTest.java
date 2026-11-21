@@ -45,7 +45,7 @@ public class OicAuthPluginTest extends AbstractJUnitTest {
     private static final String CLIENT = "jenkins";
 
     private static final String KEYCLOAK_IMAGE =
-            "keycloak/keycloak:26.0.4@sha256:cb3c2f071b3fd1a00051699ac95acf72fdd464d0e23804150169fd3037cff506";
+            "keycloak/keycloak:26.8.2@sha256:7e66a96e4739239070aeaf72e4c5decf0f7f682cfc725b9f7ea2b336eaba38b3";
 
     @Rule
     public KeycloakContainer keycloak = new KeycloakContainer(KEYCLOAK_IMAGE);
